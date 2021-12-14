@@ -1,0 +1,58 @@
+<html> 
+<head>
+</head>
+<body>
+
+
+<h1> 1 -> 2 -> 3 -> 4 -> 5 </h1>
+
+<p id='coords'></p>
+
+<div id="smileylaugh">
+</div>
+
+    <style>
+        canvas {     
+            border: 1px solid black;
+            border-radius: 0px;
+        }
+        body {
+          margin: 0;
+          padding: 0;
+					background: cyan;
+        }
+    </style>
+
+   
+    <canvas id='canvas' width="800" height="800"></canvas>
+     <p id='coords'></p>
+
+
+<img src="https://c.tenor.com/KhDlZcyJOLIAAAAM/laugh-emoji.gif"></img>
+
+<script>
+var coords = [];
+var canvas = document.getElementById('canvas');
+var context = canvas.getContext("2d");
+canvas.addEventListener('click', function (event) {
+    var coord = { "x": event.x, "y": event.y};
+    document.getElementById("coords").innerText = "{" + coord.x + ", " + coord.y + "}";
+    coords.push(coord);
+    var max = coords.length - 1;
+    if (typeof coords[max - 1] !== "undefined") {
+        var curr = coords[max], prev = coords[max - 1];
+        context.beginPath();
+        context.moveTo(prev.x, prev.y);
+        context.lineTo(curr.x, curr.y);
+        context.stroke();
+    }
+});
+
+
+</script>
+
+
+</body> 
+
+
+</html>
